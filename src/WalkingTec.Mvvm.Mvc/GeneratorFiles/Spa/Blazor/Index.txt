@@ -1,5 +1,5 @@
 @page "$pagepath$"
-@using $vmnamespace$;
+@using global::$vmnamespace$;
 @inherits BasePage
 @attribute [ActionDescription("$des$", "$controllername$")]
 
@@ -25,7 +25,7 @@ $columns$
         }
         @if (IsAccessable("/api/$modelname$/BatchDelete"))
         {
-            <TableToolbarPopconfirmButton TItem="$modelname$_View" Color="Color.Primary"
+            <TableToolbarPopConfirmButton TItem="$modelname$_View" Color="Color.Primary"
                                           Icon="fa fa-fw fa-trash" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
                                           OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
                                           ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
@@ -41,21 +41,19 @@ $columns$
         }
     </TableToolbarTemplate>
     <RowButtonTemplate>
-        <div style="padding-right:10px;">
-            @if (IsAccessable("/api/$modelname$/Edit"))
-            {
-                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClick="() => OnEditClick(context)" />
-            }
-            @if (IsAccessable("/api/$modelname$/{id}"))
-            {
-                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
-            }
-            @if (IsAccessable("/api/$modelname$/BatchDelete"))
-            {
-                <PopConfirmButton Icon="fa fa-trash" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
-                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
-            }
-        </div>
+        @if (IsAccessable("/api/$modelname$/Edit"))
+        {
+            <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClick="() => OnEditClick(context)" />
+        }
+        @if (IsAccessable("/api/$modelname$/{id}"))
+        {
+            <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
+        }
+        @if (IsAccessable("/api/$modelname$/BatchDelete"))
+        {
+            <PopConfirmButton Icon="fa fa-trash" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                              Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+        }
     </RowButtonTemplate>
 </Table>
 
